@@ -14,7 +14,7 @@ const sessionKey = 'takapathai-demo-session';
 const actions = {
   deposit: {
     account: 'Bank Account Number', placeholder: 'Enter 11 digit account number', providers: bankNames,
-    providerLabel: 'Select A Bank', amount: 'Amount to Add', amountHint: 'Add Amount to withdraw',
+    providerLabel: 'Select A Bank', amount: 'Amount to Add', amountHint: 'Enter amount to add',
     button: 'Add Money', hint: 'Try demo bank account 01900000001 and PIN 1234.',
   },
   cashout: {
@@ -28,7 +28,7 @@ const actions = {
   bonus: { button: 'Get Bonus', hint: 'Use coupon TAKAPATHAI once to add $100.' },
   bill: {
     account: 'Biller Account Number', placeholder: 'Enter account number', providers: billers,
-    providerLabel: 'Select To Pay', amount: 'Amount to Pay', amountHint: 'Add Amount to pay',
+    providerLabel: 'Select To Pay', amount: 'Amount to Pay', amountHint: 'Enter amount to pay',
     button: 'Pay Now', hint: 'Try demo biller account 100001 and PIN 1234.',
   },
 };
@@ -85,7 +85,7 @@ viewAll.addEventListener('click', () => {
 });
 
 receipt.addEventListener('close', () => {
-  if (receipt.returnValue === 'home') show('dashboard');
+  if (receiptAction.value === 'home') show('dashboard');
 });
 
 form.addEventListener('submit', async (event) => {
@@ -172,7 +172,7 @@ function configureForm(actionType) {
   byId('amount-label').textContent = action.amount ?? 'Amount';
   byId('amount').placeholder = action.amountHint ?? '';
   byId('provider-label').textContent = action.providerLabel ?? '';
-  provider.replaceChildren(new Option('Select back', ''));
+  provider.replaceChildren(new Option(action.providerLabel ?? 'Select a provider', ''));
   for (const name of action.providers ?? []) provider.add(new Option(name));
   for (const [field, visible] of [
     ['provider', Boolean(action.providers)], ['account', Boolean(action.account)],
