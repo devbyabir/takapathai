@@ -2,7 +2,7 @@
 
 <img src="assets/logo-full.png" width="240" alt="TakaPathai">
 
-A mobile wallet simulator for practicing transfers, deposits, cash outs, and bill payments. Try the standalone wallet with sample data, or connect Friends Wallet to send demo taka between Google accounts.
+A mobile wallet simulator for practicing transfers, deposits, cash outs, and bill payments. The public demo runs in your browser with sample data. Friends Wallet is an optional mode for sending demo taka between Google accounts.
 
 [![Open live demo](https://img.shields.io/badge/Open-Live_demo-087F68?style=for-the-badge)](https://takapathai.vercel.app/)
 
@@ -34,6 +34,8 @@ npm test
 
 ## Friends Wallet
 
+**Deployment status:** The public demo runs in standalone mode. Friends Wallet requires a hosted Supabase project, Google OAuth credentials, and the setup below before visitors can sign in or transfer demo taka across devices.
+
 Open **Friends Wallet** and continue with Google. Choose a unique 11-digit username in Bangladesh mobile format and set a four-digit transfer PIN. The wallet starts with ৳50,000 once per Google-linked account. The digits are an alias that other signed-in wallet users can find by exact match. Google verifies the sign-in identity. The alias does not certify ownership of a mobile number.
 
 Choose **Transfer Money** or **Demo Cash Out**, find the recipient’s wallet by username, enter the amount and PIN, then submit. Demo Cash Out credits the chosen wallet as the simulated agent. The recipient sees the credit after refreshing. Both actions use demo balances.
@@ -59,3 +61,5 @@ The repository is connected to Vercel. Vercel deploys the root of the main branc
 The standalone demo stores its data in the current browser. Each site address has its own browser storage. The layout was inspired by the Programming Hero mobile wallet exercise. The release includes the TakaPathai logo and uses typographic action symbols.
 
 Friends Wallet keeps PIN hashes and balances in a private database schema. Signed-in users can look up an exact wallet username up to 20 times per minute. The server checks the PIN and balance, and updates both wallets in one database transaction. The phone-shaped username is a chosen alias. Use fictional digits for demos.
+
+The standalone login uses public sample credentials and browser storage. Use sample account numbers and PINs only. The project does not connect to banks or move real funds.
