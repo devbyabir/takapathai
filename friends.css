@@ -1,0 +1,10 @@
+.friends-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.4rem; background: var(--surface); }
+.friends-header img { display: block; width: min(50vw, 12rem); }
+.friends .content { display: grid; gap: 1rem; }
+.friends h1 { font-size: 1.55rem; }
+.friends-copy, #friends-owner { color: var(--muted); }
+.friends .panel { padding: 1.2rem; }
+.friends .section-heading { margin: 0; }
+.friends #friends-wallet { display: grid; gap: 1rem; }
+#friends-balance { font-size: 1.7rem; color: var(--teal); }
+.friends-link { color: var(--teal); font-weight: 600; }

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TakaPathai | Friends Wallet</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="friends.css">
+  <script type="module" src="friends.js"></script>
+</head>
+<body>
+  <main class="phone friends">
+    <header class="friends-header">
+      <a href="index.html"><img src="assets/logo-full.png" alt="TakaPathai"></a>
+      <button id="friends-logout" class="logout" type="button" hidden>Log Out</button>
+    </header>
+    <div class="content">
+      <h1>Friends Wallet</h1>
+      <p class="friends-copy">Send or cash out demo taka using a friend’s wallet username.</p>
+      <p id="friends-status" class="notice" role="status">Loading Friends Wallet…</p>
+      <p id="friends-error" class="error" role="alert" hidden></p>
+
+      <button id="friends-google" class="primary" type="button" disabled>Continue with Google</button>
+
+      <form id="friends-pin-form" class="panel" hidden>
+        <h2>Set up your wallet</h2>
+        <p>Choose a username and PIN to start with ৳50,000 in demo balance.</p>
+        <label for="friends-handle">11-digit wallet username</label>
+        <input id="friends-handle" type="text" inputmode="numeric" autocomplete="username" placeholder="01XXXXXXXXX" pattern="01[3-9][0-9]{8}" maxlength="11" aria-describedby="friends-handle-help" required>
+        <p id="friends-handle-help">Other players can find this username by its exact digits. Google verifies your account. These digits are a wallet alias.</p>
+        <label for="friends-new-pin">Four-digit PIN</label>
+        <input id="friends-new-pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>
+        <label for="friends-repeat-pin">Repeat PIN</label>
+        <input id="friends-repeat-pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>
+        <button class="primary" type="submit">Create wallet</button>
+      </form>
+
+      <section id="friends-wallet" hidden>
+        <div class="panel">
+          <div class="section-heading">
+            <h2>Available demo balance</h2>
+            <button id="friends-refresh" class="text-button" type="button">Refresh</button>
+          </div>
+          <strong id="friends-balance"></strong>
+          <p id="friends-owner"></p>
+        </div>
+        <form id="friends-send-form" class="panel">
+          <label for="friends-kind">Action</label>
+          <select id="friends-kind">
+            <option value="transfer">Transfer Money</option>
+            <option value="cashout">Demo Cash Out</option>
+          </select>
+          <p id="friends-cashout-help" hidden>Demo Cash Out credits the selected demo wallet as the agent.</p>
+          <label for="friends-recipient">Recipient’s wallet username</label>
+          <input id="friends-recipient" type="text" inputmode="numeric" placeholder="01XXXXXXXXX" maxlength="18" required>
+          <button id="friends-find" class="text-button" type="button">Find wallet</button>
+          <p id="friends-match" role="status" hidden></p>
+          <label for="friends-amount">Amount in ৳</label>
+          <input id="friends-amount" inputmode="decimal" maxlength="24" placeholder="0.00" required>
+          <label for="friends-send-pin">Transfer PIN</label>
+          <input id="friends-send-pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>
+          <button class="primary" type="submit">Send demo taka</button>
+        </form>
+        <h2>Recent transfers</h2>
+        <ul id="friends-history" class="activity"></ul>
+      </section>
+      <a class="friends-link" href="index.html">Back to the local demo</a>
+    </div>
+    <noscript><p class="notice">Enable JavaScript to use Friends Wallet.</p></noscript>
+  </main>
+</body>
+</html>
