@@ -4,9 +4,7 @@
 
 A mobile wallet simulator for practicing transfers, deposits, cash outs, and bill payments. Try the standalone wallet with sample data, or connect Friends Wallet to send demo taka between Google accounts.
 
-[![Live demo setup](https://img.shields.io/badge/Live_demo-Publishing_setup-087F68?style=for-the-badge)](#deploy-on-github-pages)
-
-After publishing, replace this badge’s destination with the HTTPS URL shown in **Settings → Pages** and change its label to **Open live demo**.
+[![Open live demo](https://img.shields.io/badge/Open-Live_demo-087F68?style=for-the-badge)](https://takapathai.vercel.app/)
 
 ## Try the standalone wallet
 
@@ -42,19 +40,15 @@ Choose **Transfer Money** or **Demo Cash Out**, find the recipient’s wallet by
 
 1. In Supabase SQL Editor, run `supabase/friends-wallet.sql`. For an existing Friends Wallet project, this also migrates previously registered digits to usernames and preserves balances, PINs, and history. Legacy wallets stay tied to their original Supabase user IDs. A Google identity must be linked to that same user ID to access a legacy wallet. A separate Google account does not acquire a legacy wallet by entering its digits.
 2. Create a Google OAuth web client and register the Supabase Auth callback as its authorized redirect URI. Enable Google in Supabase Auth and enter that OAuth client ID and secret there. Use Google as the Friends Wallet sign-in provider. Disable the old phone provider if this project was using it only for Friends Wallet. [Google setup for Supabase](https://supabase.com/docs/guides/auth/social-sign-in/auth-google)
-3. Add the exact local and deployed `friends.html` URLs to the Supabase redirect allow list, for example `http://localhost:8000/friends.html` and `https://<username>.github.io/takapathai-wallet/friends.html`. [Supabase redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls)
-4. Put the Supabase HTTPS URL and **publishable** key in `friends-config.js`. Keep the Google client secret in Supabase Auth. Publish the updated files to GitHub Pages.
+3. Add the exact local and deployed `friends.html` URLs to the Supabase redirect allow list, for example `http://localhost:8000/friends.html` and `https://takapathai.vercel.app/friends.html`. [Supabase redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls)
+4. Put the Supabase HTTPS URL and **publishable** key in `friends-config.js`. Keep the Google client secret in Supabase Auth. Push the updated files to the production branch.
 5. In two Google accounts, set up distinct wallet usernames. Send ৳100 from the first to the second and refresh both wallets. Their balances should become ৳49,900 and ৳50,100. Use Demo Cash Out to send it back and verify both history entries.
 
 The PIN is stored as a salted hash on the server. The sender and recipient balances change in one database transaction, and a retry with the same transfer request ID returns the original transaction. Friends Wallet uses fictional balances and supports transfers within the app.
 
-## Deploy on GitHub Pages
+## Deployment
 
-1. Sign in to GitHub as `devbyabir` and create a new repository, for example `takapathai-wallet`. Extract the release ZIP and upload its contents to the root of `main`, including `.nojekyll`. Make the initial commit from that account. If you use Git locally, set the repository’s `user.email` to your verified GitHub email or the exact noreply address in GitHub Settings. Use your own account for subsequent commits. [GitHub commit email settings](https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address)
-2. In the repository, open **Settings → Pages**. Under **Build and deployment**, select **Deploy from a branch**, choose **main** and **/(root)**, and save.
-3. Once Pages shows the published URL, open it and run the demo sequence above. For a standard project site the address is `https://<username>.github.io/takapathai-wallet/`. Add the actual URL to the repository’s About section and portfolio.
-
-The app uses relative asset and module paths, so it can run under the repository path without a build step. [GitHub Pages publishing guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+The repository is connected to Vercel. Vercel deploys the root of the main branch as a static site using the **Other** preset. The app does not need a build command. Open the live demo and use the standalone wallet steps above to verify a deployment.
 
 ## How it works
 
